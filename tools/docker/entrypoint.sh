@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -euo pipefail
 
 PW_TEST_DB_TYPE=${PW_TEST_DB_TYPE:-mysql}
@@ -84,7 +84,7 @@ if ! test_db_connection; then
     if ! test_db_connection; then
         echo "Still cannot connect to database."
         echo "Maybe you are starting the db for the first time. Waiting up to 60 seconds."
-        for i in {0..9}; do
+        for i in $(seq 0 9); do
             sleep 5
             if test_db_connection; then
                 break
@@ -100,7 +100,7 @@ fi
 
 # rebuild db
 # do this on --reset or if the db doesn't exist
-if [[ "$1" == "--reset" ]]; then
+if [ "$1" = "--reset" ]; then
     shift
     reset_data
 elif ! test_database; then
@@ -113,12 +113,12 @@ if [ $# -eq 0 ]; then
     # we probably ran with --reset and nothing else
     # just exit cleanly
     exit 0
-elif [ "$1" == "--shell" ]; then
+elif [ "$1" = "--shell" ]; then
     exec bash
-elif [ "$1" == "--test" ] || [ "$1" == "--quick-test" ]; then
+elif [ "$1" = "--test" ] || [ "$1" = "--quick-test" ]; then
     shift
     python3 manage.py test $@
-elif [ "$1" == "--tox" ] || [ "$1" == "--quick-tox" ]; then
+elif [ "$1" = "--tox" ] || [ "$1" = "--quick-tox" ]; then
     shift
     tox $@
 else # run whatever CMD is set to
