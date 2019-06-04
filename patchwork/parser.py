@@ -38,14 +38,15 @@ list_id_headers = ['List-ID', 'X-Mailing-List', 'X-list']
 SERIES_DELAY_INTERVAL = 10
 
 # @see https://git-scm.com/docs/git-diff#_generating_patches_with_p
-EXTENDED_HEADER_LINES = ('old mode ', 'new mode ',
-        'deleted file mode ',
-        'new file mode ',
-        'copy from ', 'copy to ',
-        'rename from ', 'rename to ',
-        'similarity index ',
-        'dissimilarity index ',
-        'new file mode ', 'index ')
+EXTENDED_HEADER_LINES = (
+    'old mode ', 'new mode ',
+    'deleted file mode ',
+    'new file mode ',
+    'copy from ', 'copy to ',
+    'rename from ', 'rename to ',
+    'similarity index ',
+    'dissimilarity index ',
+    'new file mode ', 'index ')
 
 logger = logging.getLogger(__name__)
 
